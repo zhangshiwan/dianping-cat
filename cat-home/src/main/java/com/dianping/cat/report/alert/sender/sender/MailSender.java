@@ -1,6 +1,7 @@
 package com.dianping.cat.report.alert.sender.sender;
 
 import java.net.URLEncoder;
+import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -47,6 +48,7 @@ public class MailSender extends AbstractSender {
 		String urlPars = m_senderConfigManager.queryParString(sender);
 		String time = new SimpleDateFormat("yyyyMMddHHmm").format(new Date());
 
+
 		try {
 			urlPars = urlPars.replace("${receiver}", receiver).replace("${title}", URLEncoder.encode(title, "utf-8"))
 			      .replace("${content}", URLEncoder.encode(content, "utf-8"))
@@ -55,6 +57,9 @@ public class MailSender extends AbstractSender {
 		} catch (Exception e) {
 			Cat.logError(e);
 		}
+		MessageFormat format = new MessageFormat("[{0,date,MM-dd HH:mm:ss.sss}] [{1}] [{2}] {3} {4} ");
+
+		System.out.println(format.format(new Object[] { new Date(), sender.getType(), urlPrefix, urlPars ,content}));
 
 		return httpSend(sender.getSuccessCode(), sender.getType(), urlPrefix, urlPars);
 	}

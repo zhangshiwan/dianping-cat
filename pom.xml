@@ -273,12 +273,12 @@ encoding/<project>=UTF-8
    </pluginRepositories>
    <distributionManagement>
       <repository>
-         <id>releases</id>
-         <url>${releases.repo}</url>
+         <id>nexus-releases</id>
+         <url>http://192.168.3.5:8081/nexus/content/repositories/releases/</url>
       </repository>
       <snapshotRepository>
-         <id>snapshots</id>
-         <url>${snapshots.repo}</url>
+         <id>nexus-snapshots</id>
+         <url>http://192.168.3.5:8081/nexus/content/repositories/snapshots/</url>
       </snapshotRepository>
    </distributionManagement>
 	<properties>

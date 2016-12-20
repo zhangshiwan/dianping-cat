@@ -61,7 +61,18 @@ function update() {
     var monitor = $("#monitor").val();
     var split = ";";
     var id = domain + split + type + split + name + split + monitor;
-    window.location.href = "?op=eventRuleSubmit&configs=" + configStr + "&ruleId=" + id;
+    //window.location.href = "?op=eventRuleSubmit&configs=" + configStr + "&ruleId=" + id;
+
+	$.get(
+			"/cat/s/config",{
+				op : "eventRuleSubmit",
+				configs:   configStr,
+				ruleId : id
+			},function(data,state){
+				window.history.back();
+				window.location.reload();
+			}
+	)
 }
 
 	$(document).ready(function() {

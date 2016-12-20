@@ -62,7 +62,21 @@ function update() {
     var monitor = $("#monitor").val();
     var split = ";";
     var id = domain + split + type + split + name + split + monitor;
-    window.location.href = "?op=transactionRuleSubmit&configs=" + configStr + "&ruleId=" + id;
+    //window.location.href = "?op=transactionRuleSubmit&configs=" + configStr + "&ruleId=" + id;
+	$.get(
+			"/cat/s/config",{
+				op : "transactionRuleSubmit",
+				configs:   configStr,
+				ruleId : id
+			},function(data,state){
+				//这里显示从服务器返回的数据
+				//alert(data);
+				//这里显示返回的状态
+				//alert(state);
+				window.history.back();
+				window.location.reload();
+			}
+	)
 }
 
 	$(document).ready(function() {

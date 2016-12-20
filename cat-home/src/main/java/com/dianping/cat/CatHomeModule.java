@@ -99,6 +99,7 @@ public class CatHomeModule extends AbstractModule {
 	@Override
 	protected void setup(ModuleContext ctx) throws Exception {
 		File serverConfigFile = ctx.getAttribute("cat-server-config-file");
+
 		ServerConfigManager serverConfigManager = ctx.lookup(ServerConfigManager.class);
 		final TcpSocketReceiver messageReceiver = ctx.lookup(TcpSocketReceiver.class);
 
