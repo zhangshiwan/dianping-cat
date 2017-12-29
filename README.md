@@ -4,7 +4,7 @@ CAT
  [![GitHub forks](https://img.shields.io/github/forks/dianping/cat.svg?style=social&label=Fork&)](https://github.com/dianping/cat/fork)
 
 ===
-##### CAT基于Java开发的实时应用监控平台，包括实时应用监控，业务监控。[2013-01-06] 
+##### CAT基于Java开发的实时应用监控平台，包括实时应用监控，业务监控。[2013-01-06]
 
 ##### CAT支持的监控消息类型包括：
 +  **Transaction**	  适合记录跨越系统边界的程序访问行为,比如远程调用，数据库调用，也适合执行时间较长的业务逻辑监控，Transaction用来记录一段代码的执行时间和次数。
@@ -42,15 +42,15 @@ Quick Started
 ---------------------
 #####1、在CAT目录下，用maven构建项目
         mvn clean install -DskipTests
-        
+
         如果下载有问题，可以尝试翻墙后下载，可以 git clone git@github.com:dianping/cat.git mvn-repo 下载到本地，这个分支是cat编译需要的依赖的一些jar ，将这些jar放入本地的maven仓库文件夹中。
-        
+
 #####2、配置CAT的环境
 	mvn cat:install
 Note：
 * Linux\Mac  需要对/data/appdatas/cat和/data/applogs/cat有读写权限
 * Windows    则是对系统运行盘下的/data/appdatas/cat和/data/applogs/cat有读写权限,如果cat服务运行在e盘的tomcat中，则需要对e:/data/appdatas/cat和e:/data/applogs/cat有读写权限
-* 
+*
         此步骤是配置一些cat启动需要的基本数据库配置
 
 #####3、(Optional)如果安装了hadoop集群，需到/data/appdatas/cat/server.xml中配置对应hadoop信息。将localmode设置为false，默认情况下，CAT在开发模式（localmode=true）下工作。
@@ -61,7 +61,7 @@ Note：
 * cat-home打包出来的war包，重新命名为cat.war, 并放入tomcat的webapps 。
 * 启动tomcat
 * 访问 http://localhost:8080/cat/r
-* 具体详细的还可以参考   http://unidal.org/cat/r/home?op=view&docName=deploy   
+* 具体详细的还可以参考   http://unidal.org/cat/r/home?op=view&docName=deploy
 
 #####5、遇到jar不能下载的情况
 * cat jar在cat的mvn-repo分支下，可以download到本地，在copy至本地的仓库目录
