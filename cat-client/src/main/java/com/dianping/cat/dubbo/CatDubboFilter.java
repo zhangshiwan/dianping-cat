@@ -18,7 +18,9 @@ import com.site.helper.ParametersHelper;
 /**
  * Created by zhangsw on 2016/12/16.
  */
-@Activate
+@Activate(
+        group = {"provider"}
+)
 public class CatDubboFilter implements Filter {
 
     @Override

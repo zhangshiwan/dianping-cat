@@ -20,10 +20,12 @@ import com.dianping.cat.configuration.client.entity.Server;
 import com.dianping.cat.configuration.client.transform.DefaultSaxParser;
 
 public class DefaultClientConfigManager implements LogEnabled, ClientConfigManager, Initializable {
-	private static final String CAT_CLIENT_XML = "/META-INF/cat/client.xml";
+	private static final String CAT_CLIENT_XML = "/client.xml";
+
+	private static final String GLOBAL_CAT_CLIENT_XML = "/client.xml";
 
 	private static final String PROPERTIES_CLIENT_XML = "/META-INF/app.properties";
-	
+
 	private static final String XML = "/data/appdatas/cat/client.xml";
 
 	private Logger m_logger;
@@ -125,18 +127,18 @@ public class DefaultClientConfigManager implements LogEnabled, ClientConfigManag
 		return null;
 	}
 
-	private ClientConfig loadConfigFromXml() {
+	private ClientConfig loadConfigFromXml(String path) {
 		InputStream in = null;
 		try {
-			in = Thread.currentThread().getContextClassLoader().getResourceAsStream(CAT_CLIENT_XML);
+			in = Thread.currentThread().getContextClassLoader().getResourceAsStream(path);
 
 			if (in == null) {
-				in = Cat.class.getResourceAsStream(CAT_CLIENT_XML);
+				in = Cat.class.getResourceAsStream(path);
 			}
 			if (in != null) {
 				String xml = Files.forIO().readFrom(in, "utf-8");
 
-				m_logger.info(String.format("Resource file(%s) found.", Cat.class.getResource(CAT_CLIENT_XML)));
+				m_logger.info(String.format("Resource file(%s) found.", Cat.class.getResource(path)));
 				return DefaultSaxParser.parse(xml);
 			}
 			return null;
@@ -193,7 +195,7 @@ public class DefaultClientConfigManager implements LogEnabled, ClientConfigManag
 	@Override
 	public void initialize() throws InitializationException {
 		File configFile = new File(XML);
-		
+
 		initialize(configFile);
 	}
 
@@ -218,7 +220,10 @@ public class DefaultClientConfigManager implements LogEnabled, ClientConfigManag
 			clientConfig = loadConfigFromEnviroment();
 
 			if (clientConfig == null) {
-				clientConfig = loadConfigFromXml();
+				clientConfig = loadConfigFromXml(CAT_CLIENT_XML);
+			}
+			if (globalConfig == null ){
+				globalConfig =  loadConfigFromXml(GLOBAL_CAT_CLIENT_XML);;
 			}
 			// merge the two configures together to make it effected
 			if (globalConfig != null && clientConfig != null) {
