@@ -8,6 +8,17 @@
 /*.bat
 !.travis.yml
 *.iml
+### Java template
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
 cat-client/src/main/resources/com/dianping/cat/configuration/client/config.xsd
 
 cat-client/src/main/resources/com/dianping/cat/status/model/status.xsd
